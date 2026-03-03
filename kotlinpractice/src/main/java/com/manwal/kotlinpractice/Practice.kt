@@ -18,6 +18,9 @@ fun main() {
         println(a + b)
     }
 
+    val sum = {a: Int, b: Int -> a+b}
+    println(sum(5,6))
+
 }
 
 fun String.addSomething(): String {

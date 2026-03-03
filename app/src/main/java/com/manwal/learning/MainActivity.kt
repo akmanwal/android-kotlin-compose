@@ -1,5 +1,6 @@
 package com.manwal.learning
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -24,14 +26,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.manwal.learning.entity.PostEntity
-import com.manwal.learning.navigation.Routes
-import com.manwal.learning.navigation.ScreenA
-import com.manwal.learning.navigation.ScreenB
 import com.manwal.learning.navigation.myAppNavigation
+import com.manwal.learning.ui.theme.LearningSampleTheme
 import com.manwal.learning.viewmodel.MainUiState
 import com.manwal.learning.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,18 +45,22 @@ class MainActivity : ComponentActivity() {
         // Add Lifecycle Observer
         lifecycle.addObserver(MainLifecycleObserver())
 
+        val intent: Intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("key", "value")
+        }
+
         enableEdgeToEdge()
         setContent {
             myAppNavigation()
 
-            /*LearningSampleTheme {
+            LearningSampleTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     PostListScreen(
                         viewModel = viewModel,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
-            }*/
+            }
         }
     }
 }

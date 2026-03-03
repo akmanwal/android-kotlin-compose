@@ -30,4 +30,4 @@ fun main() {
 
 // By default includes all methods of Any class unlike java where we need to override them
 // toString(), hashCode(), equals() comes from "Any" class
-data class Person(val name: String, val age: Int)
+data class Person(var name: String, var age: Int)
